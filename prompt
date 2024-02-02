@@ -1,0 +1,9 @@
+replace the markdown header that wrapped in `---` and `---` based on the below template, keep the original title content, transform the date to the template date, transform the category to tag, discard the `layout`, `comments`, `thumbnail` and `banner`:
+```
+---
+title: 'originalContent'
+date: 20xx/xx/xx
+tag: original categories
+author: Andy
+---
+```

@@ -1,10 +1,10 @@
 ---
-type: page
-title: About
-date: 2021-03-19
+type: posts
+title: Posts
+date: 2024-02-03
 ---
 
-# Your Name
+<!-- # FTAndy
 
 Hey, I'm a Senior Software Engineer at Company. I enjoy working with Next.js and crafting beautiful front-end experiences.
 
@@ -17,4 +17,4 @@ This portfolio is built with **Next.js** and a library called [Nextra](https://n
 - Twitter [@yourname](https://twitter.com/yourname)
 - GitHub [@yourname](https://github.com/yourname)
 - Instagram [@yourname](https://instagram.com/yourname)
-- Email your@name.com
+- Email your@name.com -->

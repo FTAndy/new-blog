@@ -4,6 +4,7 @@ const RSS = require('rss')
 const matter = require('gray-matter')
 
 async function generate() {
+  // TODO: update RSS
   const feed = new RSS({
     title: 'Your Name',
     site_url: 'https://yoursite.com',
