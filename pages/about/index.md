@@ -3,6 +3,9 @@ type: page
 title: About
 date: 2024-02-03
 ---
+<style>
+  h1 {display: none;}
+</style>
 
 # FTAndy
 
