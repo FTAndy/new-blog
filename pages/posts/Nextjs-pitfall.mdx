@@ -1,0 +1,71 @@
+---
+title: 'Cache Pitfall in Next.js 14'
+date: 2023/10/05
+tag: Next.js
+author: Andy
+---
+
+Everything in Next.js is a convention. The intention to improve development efficiency and bring their "best practice" of a framework to regular engineers sometimes will cause lots of backfires. Using the feature following the guidelines in Next.js, it is like following a bad teacher to shove everything in your brain not explaining why and you need to figure it out after class. Here are some caveats I concluded.
+
+## Ambiguous Cache System
+
+Because the architecture needs to be compatible with their famous new invention `Server Action` which is a new paradigm to write server and client code in a component, it needs to have this complex and counter-intuition cache system.
+
+`layout.tsx | page.tsx | route.ts`
+```tsx
+export const dynamic = 'auto' | 'force-dynamic' | 'error' | 'force-static'
+export const dynamicParams = true
+export const revalidate = false | 0 | number
+export const fetchCache = 'auto' | 'default-cache' | 'only-cache' | 'force-cache' | 'force-no-store' | 'default-no-store' | 'only-no-store'
+export const runtime = 'nodejs' | 'edge'
+export const preferredRegion = 'auto' | 'global' | 'home' | string | string[]
+export const maxDuration = 5
+ 
+export default function MyComponent() {}
+```
+
+Based on the config, ideally, each component has `4 * 2 * 3 * 7 * 2 * 5` = `1,680` combinations of cache strategies! Even if many of them would lead to the same effect, still a bunch.
+
+I have a doubt whether the official maintainer knows what is the effect of each config combination.
+
+Each mode should have its own config that makes sense on this scope. The easiest way is to just wrap each mode into a single config like:
+```tsx
+export const forceDynamic = {
+  fetchCache: false,
+  runtime = 'nodejs'
+}
+// or
+export const autoDynamic = {
+  revalidationTime: number,
+  maxDuration: 5,
+}
+// or
+export const static = {
+  revalidationTime: number
+  fetchCache: 'only-cache'
+}
+```
+
+## The Dynamic Functions API
+The official doc tells you that you don't need to config specifically to each component, in most cases the system would handle and cache for you. When you actually use something, like the `cookies`, `headers`, `searchParams` from the Dynamic Functions, it would disable every cache feature in your component!
+```app/layout.jsx```
+```tsx
+import { cookies } from 'next/headers'
+
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const cookieStore = cookies()
+  return <html lang="en">
+    {children}
+  </html>
+}
+```
+Because you use the cookie API in the root layout, it would automatically disable every cache strategy in every component on every page.
+
+This is the most easy way to disable all the cache strategies in your system. Even if you config the cache `export const revalidate = 3600 * 24 * 7` and `fetch`, the dynamic function will disable your cache config. the only way to opt-in the cache is with `export const dynamic = 'force-static'` (do use this! This will cause another strange no-cache behavior to your other component). And with all these caveats, the doc would not tell you, you need to figure it out on your own.
+
+## Why Next.js 14
+The only reason for using Next.js 14 is that you want to keep track of the features of the latest React.js 18 version like `cache`, `use client`, `use server`, etc. Because there are too many default `opt-in` once you need to `opt-out`, you need to do research in the doc and you won't want to read their doc, trust me.

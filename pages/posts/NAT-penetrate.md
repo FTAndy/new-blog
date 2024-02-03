@@ -20,6 +20,6 @@ author: Andy
 
 3. 使用 Socket.io 作为长链接转发。当前项目就是用的这种方法，不过使用得有点丑陋。实际我们用了 JSON RPC 的方法调用。首先在 Socket.io Server 上定义转发 JSON 数据的事件，然后在机器人上面也定义事件来接受转发，然后用这些 HTTP Meta JSON RPC 访问本地服务器的 HTTP Server，最后再通过一个定义好的 JSON RPC 返回到 Client。这个过程维护了两条 Socket.io 的长连接，定义了很多转发事件，基本上就是一个基于 Socket.io 的 JSON RPC。说得有点乱，其实很简单，就像这样：
 
-
+<iframe src="https://link.excalidraw.com/readonly/jQm4qvwzUbqzaP7uJC5C?darkMode=true" width="100%" height="500px" style="border: none;"></iframe>
 
 不过最近看了一个做法 http://lifeofzjs.com/blog/2014/11/17/visit-server-behind-nat/。这个模型比 JSON RPC 更加简单和舒心。直接用一台服务器的 HTTP Server 进行转发 Socket.io 的 JSON RPC 到机器人，机器人返回的 Response 直接作为这台服务器的 HTTP Server Response 返回给 Client。这样只维护了一条 Socket.io 长连接，而且节约了 JSON RPC 的定义过程，而且通过公网的路由，`/robots/:id` 就可以对应访问不同机器人。简直舒心。
