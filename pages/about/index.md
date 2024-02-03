@@ -16,7 +16,7 @@ hobbies:
 - Stand Up Comedy ([Dave Chappelle](https://www.standupwiki.com/profile/654bc21457d0c2977ba9758b), [Louis C.K.](https://www.standupwiki.com/profile/654bc27a57d0c2977baa2026))
 - Communication Skill ([Think Fast, Talk Smart](https://open.spotify.com/show/6ll0MwobDt1JW9gYaOONEo))
 - Go to the gym (benchpress with body weight)
-- Gaming (Abandoned, Dota2 top 200, Apex diamand rank, CS:GO 5E 2000 score, Steam 10,000+ hour)
+- Gaming (Abandoned, Dota2 top 200, Apex diamand rank, CS:GO 5E 2000 score, [Steam](https://steamcommunity.com/profiles/76561198099497867/) 10,000+ hour)
 - Poker (Abandoned, Gain some profit and learn lots of things)
 
 ---
