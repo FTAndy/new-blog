@@ -18,6 +18,10 @@ export default {
       `}</style>
     </small>
   ),
+  i18n: [
+    { locale: 'en-US', text: 'English' },
+    // { locale: 'zh-CN', text: '中文' },
+  ],
   navs: [
   ]
 }
