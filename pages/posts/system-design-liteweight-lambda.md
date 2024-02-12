@@ -7,9 +7,11 @@ author: Andy
 
 How to design a Serverless platform?
 
-No, you do need to.
+No, you do need to. (Doge)
 
 The concept of Serverless became popular when Amazon published Lambda as the industry milestone back in 2014. It is a critical technique as the basic Infra of Cloud Services like AWS, Azure, and GCP. Old VM companies like Linode struggle in this serverless trend, either hard to make a long-term profit or end up being [acquired](https://www.akamai.com/newsroom/press-release/akamai-completes-acquisition-of-linode) by other companies since no Start-Up want to quickly verify their new business while managing a VM and hiring a DevOps engineer.
+
+Everyone wants to build a Serverless platform somehow in big tech companies. In Alibaba and Bytedance, there are several teams working on how to use Node.js as the process-level isolation to build Serverless. And all of them ended up dead since it is hard to verify the value in this domain.
 
 Nowadays, the high competition in this domain really makes creating a new product way easier than 5 or 10 years ago. It is petty funny that AWS Lambda and Cloudflare Worker have become the fundamental Infra for other new Cloud Services. Like Vercel Function and Netlify Function, both use AWS Lambda and Cloudflare Worker as their underlying Infra.
 
@@ -50,12 +52,12 @@ This [article](https://blog.cloudflare.com/mitigating-spectre-and-other-security
 5. the Sandbox process uses a V8 to compile and exec code and return results to the main process
 6. respond with the result to the outbound HTTP proxy and to the client
 
-Cloudflare didn't open source all components they depend on, the [workerd](https://github.com/cloudflare/workerd?tab=readme-ov-file) lib is a tool to compile and exec Javascript code and offer isolation. It is just the V8 part of the architecture.
+Cloudflare didn't open source all components they depend on, the [workerd](https://github.com/cloudflare/workerd?tab=readme-ov-file) lib is a tool to compile and exec Javascript code and offer isolation. It is just the runtime part of the architecture.
 
-There are still other options in the community not complicate like this. Like [isolated-vm](https://github.com/laverdet/isolated-vm), [vm2](https://github.com/patriksimek/vm2), and [v8-sandbox](https://github.com/fulcrumapp/v8-sandbox). They are dedicated to different purposes in executing Javascript code on the server side and have their own trade-off.
+There are still other options in the community not complicate. Like [isolated-vm](https://github.com/laverdet/isolated-vm), [vm2](https://github.com/patriksimek/vm2), and [v8-sandbox](https://github.com/fulcrumapp/v8-sandbox). They are dedicated to different purposes in executing Javascript code on the server side and have their own trade-off.
 
-- If you want to just exec Javascript code and exclude the network function, [isolated-vm](https://github.com/laverdet/isolated-vm) is a good option.
-- If you want a simple and easy way to init a new Node.js env, [vm2](https://github.com/patriksimek/vm2) is a good option.
+- If you want to just exec sync Javascript code, [isolated-vm](https://github.com/laverdet/isolated-vm) is a good option.
+- If you want a simple and easy way to manage a new Node.js env, [vm2](https://github.com/patriksimek/vm2) is a good option.
 - If you want to use the Cloudflare Javascript standard and make your sandbox lightweight enough, [workerd](https://github.com/cloudflare/workerd?tab=readme-ov-file) is a good option.
 
 ## Ending
