@@ -12,9 +12,10 @@ In the domain of browser monitor systems, there are tools that are very popular 
 Some critical product components include:
 
 1. client SDK: event; performance; error; replay; route;
-2. big data process storage: Kafka; ClickHouse; PostgreSQL
-3. big data retrieve: session replay; product heatmap; error tracking; performance waterfall; customize SQL Graph
-4. alert and monitor: data threshold; third-party integration; cron job
+2. data format: JSON; ProtoBuf; MessagePack; Thrift;
+3. data process and storage: Kafka; ClickHouse; PostgreSQL
+4. data management: session replay; product heatmap; error tracking; performance waterfall; customize SQL Graph
+5. alert and monitor: data threshold; third-party integration; cron job
 
 The monitor system is complex and valuable for products especially in Big companies since this type of data represents your product and not every company wants to share its secret with Sentry.io. Based on this, instead of using a public service company like Bytedance rather hire a group of engineers at the cost of billions of dollars to fork and develop the open-source version of Sentry.io.
 
